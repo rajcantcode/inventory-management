@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id           String        @id @default(uuid())
+  name         String
+  sku          String        @unique
+  stock        Int           @default(0)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[]
+
+  @@index([sku])
+}
+
+model Transaction {
+  id        String          @id @default(uuid())
+  productId String
+  product   Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  type      TransactionType
+  quantity  Int
+  createdAt DateTime        @default(now())
+
+  @@index([productId])
+  @@index([createdAt])
+}
+
+enum TransactionType {
+  INCREASE
+  DECREASE
+}

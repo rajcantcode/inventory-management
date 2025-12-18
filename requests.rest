@@ -1,0 +1,34 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "phone",
+  "sku": "PH101",
+  "initialStock": 32
+}
+
+###
+
+POST http://localhost:3000/products/cc3204c7-d68d-432e-a834-fffad0573a8c/increase
+Content-Type: application/json
+
+{
+    "quantity": "5"
+}
+
+###
+
+POST http://localhost:3000/products/edce0d46-5a92-49cd-8f7d-1b4feda52b1b/decrease
+Content-Type: application/json
+
+{
+    "quantity": "4"
+}
+
+###
+
+GET  http://localhost:3000/products/cc3204c7-d68d-432e-a834-fffad0573a8c
+
+###
+
+GET http://localhost:3000/products/edce0d46-5a92-49cd-8f7d-1b4feda52b1b/transactions
