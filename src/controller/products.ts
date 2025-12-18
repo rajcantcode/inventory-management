@@ -1,5 +1,5 @@
-import { Prisma } from "../../generated/prisma/client";
-import { prisma } from "../lib/prisma";
+import { Prisma } from "../../generated/prisma/client.js";
+import { prisma } from "../lib/prisma.js";
 import type { Request, Response } from "express";
 
 export const createProduct = async (req: Request, res: Response) => {
@@ -117,7 +117,7 @@ export const decreaseStock = async (req: Request, res: Response) => {
 
 export const getProduct = async (req: Request, res: Response) => {
   const id = req.params.id;
-  
+
   if (!id) {
     return res.status(400).json({ message: "Product ID is required" });
   }
@@ -151,7 +151,7 @@ export const getProduct = async (req: Request, res: Response) => {
 
 export const getTransactions = async (req: Request, res: Response) => {
   const id = req.params.id;
-  
+
   if (!id) {
     return res.status(400).json({ message: "Product ID is required" });
   }
